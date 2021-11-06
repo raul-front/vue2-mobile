@@ -1,18 +1,47 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <button type="button" @click="doCopy">Copy!</button>
+    <div class="box">
+      xxx
+    </div>
+    <van-button type="primary">主要按钮</van-button>
+    <span>{{1 | userStatus}}</span>
+
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'Home',
+  data () {
+    return {
+      message: 'message1',
+    }
+  },
   components: {
-    HelloWorld
-  }
+  },
+  mounted () {
+    console.log('env', this.config.env)
+  },
+  methods: {
+    doCopy () {
+      this.$copyText(this.message).then(function (e) {
+        console.log('Copied', e)
+      }, function (e) {
+        console.log('Can not copy', e)
+      })
+    },
+  },
 }
 </script>
+<style lang="less">
+.home{
+  .box{
+    width: 750px;
+    height: 30px;
+  }
+}
+
+</style>
